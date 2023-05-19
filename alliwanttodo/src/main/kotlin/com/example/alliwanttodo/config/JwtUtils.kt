@@ -2,12 +2,15 @@ package com.example.alliwanttodo.config
 
 import com.example.alliwanttodo.application.MemberService
 import io.jsonwebtoken.Claims
+import io.jsonwebtoken.JwtParser
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
+import org.springframework.stereotype.Component
 import java.util.*
 
+@Component
 class JwtUtils(
     private val memberService: MemberService,
 ) {
@@ -34,12 +37,14 @@ class JwtUtils(
 
     fun getAuthentication(username: String): Authentication {
 
-        return UsernamePasswordAuthenticationToken()
+        return UsernamePasswordAuthenticationToken(Any(), null)
     }
 
     private fun getAllClaims(token: String): Claims {
-        return Jwts.parser()
-            .setSign
+        return Jwts.parserBuilder()
+            .setSigningKey(JWT_SECRET)
+            .build()
+            .parseClaimsJws(token).body
     }
 }
 

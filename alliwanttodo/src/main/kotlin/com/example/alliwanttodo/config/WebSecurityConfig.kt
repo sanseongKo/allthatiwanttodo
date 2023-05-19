@@ -6,6 +6,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableWebSecurity
 class WebSecurityConfig(
-    private val jwtFilter: JwtFiler
+    private val jwtFilter: JwtFilter,
 ) {
 }
