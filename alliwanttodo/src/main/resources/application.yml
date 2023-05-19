@@ -1,0 +1,3 @@
+jwt:
+  secret: "string"
+  token-validity-in-seconds: 5000
